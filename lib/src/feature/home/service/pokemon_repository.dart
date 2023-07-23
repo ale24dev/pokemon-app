@@ -1,4 +1,3 @@
-import 'dart:convert';
 
 import 'package:test_pokemon_app/src/core/constants.dart';
 import 'package:test_pokemon_app/src/feature/home/data/model/pokemon_page_model.dart';
@@ -15,8 +14,7 @@ class PokemonRepository implements PokemonDataSource {
           '${Constants.BASE_URL}/pokemon-species/?offset=150&limit=150'));
 
       if (response.statusCode == 200) {
-        final jsonDecoded = jsonDecode(response.body);
-        final pokemonPage = pokemonPageModelFromJson(jsonDecoded);
+        final pokemonPage = pokemonPageModelFromJson(response.body);
         return pokemonPage;
       } else {
         throw Exception('Failed to load data: ${response.statusCode}');
