@@ -26,13 +26,13 @@ class PokemonPageModel implements PokemonPage{
     dynamic previous;
     @override
   @JsonKey(name:"results")
-    List<Result> results;
+    List<PokemonResult> pokemonResult;
 
     PokemonPageModel({
         required this.count,
         required this.next,
         this.previous,
-        required this.results,
+        required this.pokemonResult,
     });
 
     factory PokemonPageModel.fromJson(Map<String, dynamic> json) => _$PokemonPageModelFromJson(json);
@@ -41,18 +41,20 @@ class PokemonPageModel implements PokemonPage{
 }
 
 @JsonSerializable()
-class Result {
+class PokemonResult {
     @JsonKey(name:"name")
     String name;
     @JsonKey(name:"url")
     String url;
 
-    Result({
+    PokemonResult({
         required this.name,
         required this.url,
     });
 
-    factory Result.fromJson(Map<String, dynamic> json) => _$ResultFromJson(json);
 
-    Map<String, dynamic> toJson() => _$ResultToJson(this);
+
+    factory PokemonResult.fromJson(Map<String, dynamic> json) => _$PokemonResultFromJson(json);
+
+    Map<String, dynamic> toJson() => _$PokemonResultToJson(this);
 }

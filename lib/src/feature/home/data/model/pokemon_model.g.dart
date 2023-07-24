@@ -7,167 +7,424 @@ part of 'pokemon_model.dart';
 // **************************************************************************
 
 PokemonModel _$PokemonModelFromJson(Map<String, dynamic> json) => PokemonModel(
-      baseHappiness: json['base_happiness'] as int,
-      captureRate: json['capture_rate'] as int,
-      color: Color.fromJson(json['color'] as Map<String, dynamic>),
-      eggGroups: (json['egg_groups'] as List<dynamic>)
-          .map((e) => Color.fromJson(e as Map<String, dynamic>))
+      abilities: (json['abilities'] as List<dynamic>)
+          .map((e) => Ability.fromJson(e as Map<String, dynamic>))
           .toList(),
-      evolutionChain: EvolutionChain.fromJson(
-          json['evolution_chain'] as Map<String, dynamic>),
-      evolvesFromSpecies: json['evolves_from_species'],
-      flavorTextEntries: (json['flavor_text_entries'] as List<dynamic>)
-          .map((e) => FlavorTextEntry.fromJson(e as Map<String, dynamic>))
+      baseExperience: json['base_experience'] as int,
+      forms: (json['forms'] as List<dynamic>)
+          .map((e) => Species.fromJson(e as Map<String, dynamic>))
           .toList(),
-      formDescriptions: json['form_descriptions'] as List<dynamic>,
-      formsSwitchable: json['forms_switchable'] as bool,
-      genderRate: json['gender_rate'] as int,
-      genera: (json['genera'] as List<dynamic>)
-          .map((e) => Genus.fromJson(e as Map<String, dynamic>))
+      gameIndices: (json['game_indices'] as List<dynamic>)
+          .map((e) => GameIndex.fromJson(e as Map<String, dynamic>))
           .toList(),
-      generation: Color.fromJson(json['generation'] as Map<String, dynamic>),
-      growthRate: Color.fromJson(json['growth_rate'] as Map<String, dynamic>),
-      habitat: Color.fromJson(json['habitat'] as Map<String, dynamic>),
-      hasGenderDifferences: json['has_gender_differences'] as bool,
-      hatchCounter: json['hatch_counter'] as int,
+      height: json['height'] as int,
+      heldItems: (json['held_items'] as List<dynamic>)
+          .map((e) => HeldItem.fromJson(e as Map<String, dynamic>))
+          .toList(),
       id: json['id'] as int,
-      isBaby: json['is_baby'] as bool,
-      isLegendary: json['is_legendary'] as bool,
-      isMythical: json['is_mythical'] as bool,
+      isDefault: json['is_default'] as bool,
+      locationAreaEncounters: json['location_area_encounters'] as String,
+      moves: (json['moves'] as List<dynamic>)
+          .map((e) => Move.fromJson(e as Map<String, dynamic>))
+          .toList(),
       name: json['name'] as String,
-      names: (json['names'] as List<dynamic>)
-          .map((e) => Name.fromJson(e as Map<String, dynamic>))
-          .toList(),
       order: json['order'] as int,
-      palParkEncounters: (json['pal_park_encounters'] as List<dynamic>)
-          .map((e) => PalParkEncounter.fromJson(e as Map<String, dynamic>))
+      pastTypes: json['past_types'] as List<dynamic>,
+      species: Species.fromJson(json['species'] as Map<String, dynamic>),
+      sprites: Sprites.fromJson(json['sprites'] as Map<String, dynamic>),
+      stats: (json['stats'] as List<dynamic>)
+          .map((e) => Stat.fromJson(e as Map<String, dynamic>))
           .toList(),
-      pokedexNumbers: (json['pokedex_numbers'] as List<dynamic>)
-          .map((e) => PokedexNumber.fromJson(e as Map<String, dynamic>))
+      types: (json['types'] as List<dynamic>)
+          .map((e) => Type.fromJson(e as Map<String, dynamic>))
           .toList(),
-      shape: Color.fromJson(json['shape'] as Map<String, dynamic>),
-      varieties: (json['varieties'] as List<dynamic>)
-          .map((e) => Variety.fromJson(e as Map<String, dynamic>))
-          .toList(),
+      weight: json['weight'] as int,
     );
 
 Map<String, dynamic> _$PokemonModelToJson(PokemonModel instance) =>
     <String, dynamic>{
-      'base_happiness': instance.baseHappiness,
-      'capture_rate': instance.captureRate,
-      'color': instance.color,
-      'egg_groups': instance.eggGroups,
-      'evolution_chain': instance.evolutionChain,
-      'evolves_from_species': instance.evolvesFromSpecies,
-      'flavor_text_entries': instance.flavorTextEntries,
-      'form_descriptions': instance.formDescriptions,
-      'forms_switchable': instance.formsSwitchable,
-      'gender_rate': instance.genderRate,
-      'genera': instance.genera,
-      'generation': instance.generation,
-      'growth_rate': instance.growthRate,
-      'habitat': instance.habitat,
-      'has_gender_differences': instance.hasGenderDifferences,
-      'hatch_counter': instance.hatchCounter,
+      'abilities': instance.abilities,
+      'base_experience': instance.baseExperience,
+      'forms': instance.forms,
+      'game_indices': instance.gameIndices,
+      'height': instance.height,
+      'held_items': instance.heldItems,
       'id': instance.id,
-      'is_baby': instance.isBaby,
-      'is_legendary': instance.isLegendary,
-      'is_mythical': instance.isMythical,
+      'is_default': instance.isDefault,
+      'location_area_encounters': instance.locationAreaEncounters,
+      'moves': instance.moves,
       'name': instance.name,
-      'names': instance.names,
       'order': instance.order,
-      'pal_park_encounters': instance.palParkEncounters,
-      'pokedex_numbers': instance.pokedexNumbers,
-      'shape': instance.shape,
-      'varieties': instance.varieties,
+      'past_types': instance.pastTypes,
+      'species': instance.species,
+      'sprites': instance.sprites,
+      'stats': instance.stats,
+      'types': instance.types,
+      'weight': instance.weight,
     };
 
-Color _$ColorFromJson(Map<String, dynamic> json) => Color(
+Ability _$AbilityFromJson(Map<String, dynamic> json) => Ability(
+      ability: Species.fromJson(json['ability'] as Map<String, dynamic>),
+      isHidden: json['is_hidden'] as bool,
+      slot: json['slot'] as int,
+    );
+
+Map<String, dynamic> _$AbilityToJson(Ability instance) => <String, dynamic>{
+      'ability': instance.ability,
+      'is_hidden': instance.isHidden,
+      'slot': instance.slot,
+    };
+
+Species _$SpeciesFromJson(Map<String, dynamic> json) => Species(
       name: json['name'] as String,
       url: json['url'] as String,
     );
 
-Map<String, dynamic> _$ColorToJson(Color instance) => <String, dynamic>{
+Map<String, dynamic> _$SpeciesToJson(Species instance) => <String, dynamic>{
       'name': instance.name,
       'url': instance.url,
     };
 
-EvolutionChain _$EvolutionChainFromJson(Map<String, dynamic> json) =>
-    EvolutionChain(
-      url: json['url'] as String,
+GameIndex _$GameIndexFromJson(Map<String, dynamic> json) => GameIndex(
+      gameIndex: json['game_index'] as int,
+      version: Species.fromJson(json['version'] as Map<String, dynamic>),
     );
 
-Map<String, dynamic> _$EvolutionChainToJson(EvolutionChain instance) =>
-    <String, dynamic>{
-      'url': instance.url,
-    };
-
-FlavorTextEntry _$FlavorTextEntryFromJson(Map<String, dynamic> json) =>
-    FlavorTextEntry(
-      flavorText: json['flavor_text'] as String,
-      language: Color.fromJson(json['language'] as Map<String, dynamic>),
-      version: Color.fromJson(json['version'] as Map<String, dynamic>),
-    );
-
-Map<String, dynamic> _$FlavorTextEntryToJson(FlavorTextEntry instance) =>
-    <String, dynamic>{
-      'flavor_text': instance.flavorText,
-      'language': instance.language,
+Map<String, dynamic> _$GameIndexToJson(GameIndex instance) => <String, dynamic>{
+      'game_index': instance.gameIndex,
       'version': instance.version,
     };
 
-Genus _$GenusFromJson(Map<String, dynamic> json) => Genus(
-      genus: json['genus'] as String,
-      language: Color.fromJson(json['language'] as Map<String, dynamic>),
+HeldItem _$HeldItemFromJson(Map<String, dynamic> json) => HeldItem(
+      item: Species.fromJson(json['item'] as Map<String, dynamic>),
+      versionDetails: (json['version_details'] as List<dynamic>)
+          .map((e) => VersionDetail.fromJson(e as Map<String, dynamic>))
+          .toList(),
     );
 
-Map<String, dynamic> _$GenusToJson(Genus instance) => <String, dynamic>{
-      'genus': instance.genus,
-      'language': instance.language,
+Map<String, dynamic> _$HeldItemToJson(HeldItem instance) => <String, dynamic>{
+      'item': instance.item,
+      'version_details': instance.versionDetails,
     };
 
-Name _$NameFromJson(Map<String, dynamic> json) => Name(
-      language: Color.fromJson(json['language'] as Map<String, dynamic>),
-      name: json['name'] as String,
+VersionDetail _$VersionDetailFromJson(Map<String, dynamic> json) =>
+    VersionDetail(
+      rarity: json['rarity'] as int,
+      version: Species.fromJson(json['version'] as Map<String, dynamic>),
     );
 
-Map<String, dynamic> _$NameToJson(Name instance) => <String, dynamic>{
-      'language': instance.language,
-      'name': instance.name,
-    };
-
-PalParkEncounter _$PalParkEncounterFromJson(Map<String, dynamic> json) =>
-    PalParkEncounter(
-      area: Color.fromJson(json['area'] as Map<String, dynamic>),
-      baseScore: json['base_score'] as int,
-      rate: json['rate'] as int,
-    );
-
-Map<String, dynamic> _$PalParkEncounterToJson(PalParkEncounter instance) =>
+Map<String, dynamic> _$VersionDetailToJson(VersionDetail instance) =>
     <String, dynamic>{
-      'area': instance.area,
-      'base_score': instance.baseScore,
-      'rate': instance.rate,
+      'rarity': instance.rarity,
+      'version': instance.version,
     };
 
-PokedexNumber _$PokedexNumberFromJson(Map<String, dynamic> json) =>
-    PokedexNumber(
-      entryNumber: json['entry_number'] as int,
-      pokedex: Color.fromJson(json['pokedex'] as Map<String, dynamic>),
+Move _$MoveFromJson(Map<String, dynamic> json) => Move(
+      move: Species.fromJson(json['move'] as Map<String, dynamic>),
+      versionGroupDetails: (json['version_group_details'] as List<dynamic>)
+          .map((e) => VersionGroupDetail.fromJson(e as Map<String, dynamic>))
+          .toList(),
     );
 
-Map<String, dynamic> _$PokedexNumberToJson(PokedexNumber instance) =>
+Map<String, dynamic> _$MoveToJson(Move instance) => <String, dynamic>{
+      'move': instance.move,
+      'version_group_details': instance.versionGroupDetails,
+    };
+
+VersionGroupDetail _$VersionGroupDetailFromJson(Map<String, dynamic> json) =>
+    VersionGroupDetail(
+      levelLearnedAt: json['level_learned_at'] as int,
+      moveLearnMethod:
+          Species.fromJson(json['move_learn_method'] as Map<String, dynamic>),
+      versionGroup:
+          Species.fromJson(json['version_group'] as Map<String, dynamic>),
+    );
+
+Map<String, dynamic> _$VersionGroupDetailToJson(VersionGroupDetail instance) =>
     <String, dynamic>{
-      'entry_number': instance.entryNumber,
-      'pokedex': instance.pokedex,
+      'level_learned_at': instance.levelLearnedAt,
+      'move_learn_method': instance.moveLearnMethod,
+      'version_group': instance.versionGroup,
     };
 
-Variety _$VarietyFromJson(Map<String, dynamic> json) => Variety(
-      isDefault: json['is_default'] as bool,
-      pokemon: Color.fromJson(json['pokemon'] as Map<String, dynamic>),
+GenerationV _$GenerationVFromJson(Map<String, dynamic> json) => GenerationV(
+      blackWhite: Sprites.fromJson(json['black-white'] as Map<String, dynamic>),
     );
 
-Map<String, dynamic> _$VarietyToJson(Variety instance) => <String, dynamic>{
-      'is_default': instance.isDefault,
-      'pokemon': instance.pokemon,
+Map<String, dynamic> _$GenerationVToJson(GenerationV instance) =>
+    <String, dynamic>{
+      'black-white': instance.blackWhite,
+    };
+
+GenerationIv _$GenerationIvFromJson(Map<String, dynamic> json) => GenerationIv(
+      diamondPearl:
+          Sprites.fromJson(json['diamond-pearl'] as Map<String, dynamic>),
+      heartgoldSoulsilver: Sprites.fromJson(
+          json['heartgold-soulsilver'] as Map<String, dynamic>),
+      platinum: Sprites.fromJson(json['platinum'] as Map<String, dynamic>),
+    );
+
+Map<String, dynamic> _$GenerationIvToJson(GenerationIv instance) =>
+    <String, dynamic>{
+      'diamond-pearl': instance.diamondPearl,
+      'heartgold-soulsilver': instance.heartgoldSoulsilver,
+      'platinum': instance.platinum,
+    };
+
+Versions _$VersionsFromJson(Map<String, dynamic> json) => Versions(
+      generationI:
+          GenerationI.fromJson(json['generation-i'] as Map<String, dynamic>),
+      generationIi:
+          GenerationIi.fromJson(json['generation-ii'] as Map<String, dynamic>),
+      generationIii: GenerationIii.fromJson(
+          json['generation-iii'] as Map<String, dynamic>),
+      generationIv:
+          GenerationIv.fromJson(json['generation-iv'] as Map<String, dynamic>),
+      generationV:
+          GenerationV.fromJson(json['generation-v'] as Map<String, dynamic>),
+      generationVi: (json['generation-vi'] as Map<String, dynamic>).map(
+        (k, e) => MapEntry(k, Home.fromJson(e as Map<String, dynamic>)),
+      ),
+      generationVii: GenerationVii.fromJson(
+          json['generation-vii'] as Map<String, dynamic>),
+      generationViii: GenerationViii.fromJson(
+          json['generation-viii'] as Map<String, dynamic>),
+    );
+
+Map<String, dynamic> _$VersionsToJson(Versions instance) => <String, dynamic>{
+      'generation-i': instance.generationI,
+      'generation-ii': instance.generationIi,
+      'generation-iii': instance.generationIii,
+      'generation-iv': instance.generationIv,
+      'generation-v': instance.generationV,
+      'generation-vi': instance.generationVi,
+      'generation-vii': instance.generationVii,
+      'generation-viii': instance.generationViii,
+    };
+
+Sprites _$SpritesFromJson(Map<String, dynamic> json) => Sprites(
+      backDefault: json['back_default'] as String,
+      backFemale: json['back_female'],
+      backShiny: json['back_shiny'] as String,
+      backShinyFemale: json['back_shiny_female'],
+      frontDefault: json['front_default'] as String,
+      frontFemale: json['front_female'],
+      frontShiny: json['front_shiny'] as String,
+      frontShinyFemale: json['front_shiny_female'],
+      other: json['other'] == null
+          ? null
+          : Other.fromJson(json['other'] as Map<String, dynamic>),
+      versions: json['versions'] == null
+          ? null
+          : Versions.fromJson(json['versions'] as Map<String, dynamic>),
+      animated: json['animated'] == null
+          ? null
+          : Sprites.fromJson(json['animated'] as Map<String, dynamic>),
+    );
+
+Map<String, dynamic> _$SpritesToJson(Sprites instance) => <String, dynamic>{
+      'back_default': instance.backDefault,
+      'back_female': instance.backFemale,
+      'back_shiny': instance.backShiny,
+      'back_shiny_female': instance.backShinyFemale,
+      'front_default': instance.frontDefault,
+      'front_female': instance.frontFemale,
+      'front_shiny': instance.frontShiny,
+      'front_shiny_female': instance.frontShinyFemale,
+      'other': instance.other,
+      'versions': instance.versions,
+      'animated': instance.animated,
+    };
+
+GenerationI _$GenerationIFromJson(Map<String, dynamic> json) => GenerationI(
+      redBlue: RedBlue.fromJson(json['red-blue'] as Map<String, dynamic>),
+      yellow: RedBlue.fromJson(json['yellow'] as Map<String, dynamic>),
+    );
+
+Map<String, dynamic> _$GenerationIToJson(GenerationI instance) =>
+    <String, dynamic>{
+      'red-blue': instance.redBlue,
+      'yellow': instance.yellow,
+    };
+
+RedBlue _$RedBlueFromJson(Map<String, dynamic> json) => RedBlue(
+      backDefault: json['back_default'] as String,
+      backGray: json['back_gray'] as String,
+      backTransparent: json['back_transparent'] as String,
+      frontDefault: json['front_default'] as String,
+      frontGray: json['front_gray'] as String,
+      frontTransparent: json['front_transparent'] as String,
+    );
+
+Map<String, dynamic> _$RedBlueToJson(RedBlue instance) => <String, dynamic>{
+      'back_default': instance.backDefault,
+      'back_gray': instance.backGray,
+      'back_transparent': instance.backTransparent,
+      'front_default': instance.frontDefault,
+      'front_gray': instance.frontGray,
+      'front_transparent': instance.frontTransparent,
+    };
+
+GenerationIi _$GenerationIiFromJson(Map<String, dynamic> json) => GenerationIi(
+      crystal: Crystal.fromJson(json['crystal'] as Map<String, dynamic>),
+      gold: Gold.fromJson(json['gold'] as Map<String, dynamic>),
+      silver: Gold.fromJson(json['silver'] as Map<String, dynamic>),
+    );
+
+Map<String, dynamic> _$GenerationIiToJson(GenerationIi instance) =>
+    <String, dynamic>{
+      'crystal': instance.crystal,
+      'gold': instance.gold,
+      'silver': instance.silver,
+    };
+
+Crystal _$CrystalFromJson(Map<String, dynamic> json) => Crystal(
+      backDefault: json['back_default'] as String,
+      backShiny: json['back_shiny'] as String,
+      backShinyTransparent: json['back_shiny_transparent'] as String,
+      backTransparent: json['back_transparent'] as String,
+      frontDefault: json['front_default'] as String,
+      frontShiny: json['front_shiny'] as String,
+      frontShinyTransparent: json['front_shiny_transparent'] as String,
+      frontTransparent: json['front_transparent'] as String,
+    );
+
+Map<String, dynamic> _$CrystalToJson(Crystal instance) => <String, dynamic>{
+      'back_default': instance.backDefault,
+      'back_shiny': instance.backShiny,
+      'back_shiny_transparent': instance.backShinyTransparent,
+      'back_transparent': instance.backTransparent,
+      'front_default': instance.frontDefault,
+      'front_shiny': instance.frontShiny,
+      'front_shiny_transparent': instance.frontShinyTransparent,
+      'front_transparent': instance.frontTransparent,
+    };
+
+Gold _$GoldFromJson(Map<String, dynamic> json) => Gold(
+      backDefault: json['back_default'] as String,
+      backShiny: json['back_shiny'] as String,
+      frontDefault: json['front_default'] as String,
+      frontShiny: json['front_shiny'] as String,
+      frontTransparent: json['front_transparent'] as String?,
+    );
+
+Map<String, dynamic> _$GoldToJson(Gold instance) => <String, dynamic>{
+      'back_default': instance.backDefault,
+      'back_shiny': instance.backShiny,
+      'front_default': instance.frontDefault,
+      'front_shiny': instance.frontShiny,
+      'front_transparent': instance.frontTransparent,
+    };
+
+GenerationIii _$GenerationIiiFromJson(Map<String, dynamic> json) =>
+    GenerationIii(
+      emerald:
+          OfficialArtwork.fromJson(json['emerald'] as Map<String, dynamic>),
+      fireredLeafgreen:
+          Gold.fromJson(json['firered-leafgreen'] as Map<String, dynamic>),
+      rubySapphire:
+          Gold.fromJson(json['ruby-sapphire'] as Map<String, dynamic>),
+    );
+
+Map<String, dynamic> _$GenerationIiiToJson(GenerationIii instance) =>
+    <String, dynamic>{
+      'emerald': instance.emerald,
+      'firered-leafgreen': instance.fireredLeafgreen,
+      'ruby-sapphire': instance.rubySapphire,
+    };
+
+OfficialArtwork _$OfficialArtworkFromJson(Map<String, dynamic> json) =>
+    OfficialArtwork(
+      frontDefault: json['front_default'] as String,
+      frontShiny: json['front_shiny'] as String,
+    );
+
+Map<String, dynamic> _$OfficialArtworkToJson(OfficialArtwork instance) =>
+    <String, dynamic>{
+      'front_default': instance.frontDefault,
+      'front_shiny': instance.frontShiny,
+    };
+
+Home _$HomeFromJson(Map<String, dynamic> json) => Home(
+      frontDefault: json['front_default'] as String,
+      frontFemale: json['front_female'],
+      frontShiny: json['front_shiny'] as String,
+      frontShinyFemale: json['front_shiny_female'],
+    );
+
+Map<String, dynamic> _$HomeToJson(Home instance) => <String, dynamic>{
+      'front_default': instance.frontDefault,
+      'front_female': instance.frontFemale,
+      'front_shiny': instance.frontShiny,
+      'front_shiny_female': instance.frontShinyFemale,
+    };
+
+GenerationVii _$GenerationViiFromJson(Map<String, dynamic> json) =>
+    GenerationVii(
+      icons: DreamWorld.fromJson(json['icons'] as Map<String, dynamic>),
+      ultraSunUltraMoon:
+          Home.fromJson(json['ultra-sun-ultra-moon'] as Map<String, dynamic>),
+    );
+
+Map<String, dynamic> _$GenerationViiToJson(GenerationVii instance) =>
+    <String, dynamic>{
+      'icons': instance.icons,
+      'ultra-sun-ultra-moon': instance.ultraSunUltraMoon,
+    };
+
+DreamWorld _$DreamWorldFromJson(Map<String, dynamic> json) => DreamWorld(
+      frontDefault: json['front_default'] as String,
+      frontFemale: json['front_female'],
+    );
+
+Map<String, dynamic> _$DreamWorldToJson(DreamWorld instance) =>
+    <String, dynamic>{
+      'front_default': instance.frontDefault,
+      'front_female': instance.frontFemale,
+    };
+
+GenerationViii _$GenerationViiiFromJson(Map<String, dynamic> json) =>
+    GenerationViii(
+      icons: DreamWorld.fromJson(json['icons'] as Map<String, dynamic>),
+    );
+
+Map<String, dynamic> _$GenerationViiiToJson(GenerationViii instance) =>
+    <String, dynamic>{
+      'icons': instance.icons,
+    };
+
+Other _$OtherFromJson(Map<String, dynamic> json) => Other(
+      dreamWorld:
+          DreamWorld.fromJson(json['dream_world'] as Map<String, dynamic>),
+      home: Home.fromJson(json['home'] as Map<String, dynamic>),
+      officialArtwork: OfficialArtwork.fromJson(
+          json['official-artwork'] as Map<String, dynamic>),
+    );
+
+Map<String, dynamic> _$OtherToJson(Other instance) => <String, dynamic>{
+      'dream_world': instance.dreamWorld,
+      'home': instance.home,
+      'official-artwork': instance.officialArtwork,
+    };
+
+Stat _$StatFromJson(Map<String, dynamic> json) => Stat(
+      baseStat: json['base_stat'] as int,
+      effort: json['effort'] as int,
+      stat: Species.fromJson(json['stat'] as Map<String, dynamic>),
+    );
+
+Map<String, dynamic> _$StatToJson(Stat instance) => <String, dynamic>{
+      'base_stat': instance.baseStat,
+      'effort': instance.effort,
+      'stat': instance.stat,
+    };
+
+Type _$TypeFromJson(Map<String, dynamic> json) => Type(
+      slot: json['slot'] as int,
+      type: Species.fromJson(json['type'] as Map<String, dynamic>),
+    );
+
+Map<String, dynamic> _$TypeToJson(Type instance) => <String, dynamic>{
+      'slot': instance.slot,
+      'type': instance.type,
     };
