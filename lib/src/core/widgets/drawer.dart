@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:test_pokemon_app/src/feature/home/service/pokemon_local_repository.dart';
 import 'package:test_pokemon_app/src/feature/teams/teams_screen.dart';
 
 class DrawerScreen extends StatelessWidget {
@@ -24,8 +25,12 @@ class DrawerScreen extends StatelessWidget {
             title: const Text('Teams'),
             onTap: () {
               Navigator.pop(context);
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => const TeamScreen()));
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => TeamScreen(
+                            pokemonLocalRepository: PokemonLocalRepository(),
+                          )));
               // Add your home page navigation here
               // Navigator.pop(context); // Closes the Drawer
             },

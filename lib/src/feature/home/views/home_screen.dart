@@ -57,7 +57,10 @@ class _HomeScreenState extends State<HomeScreen> {
               showDialog(
                   context: context,
                   builder: ((context) {
-                    return _AddPokemonTeam(pokemonTeam: state.pokemonTeam!);
+                    return _AddPokemonTeam(
+                      pokemonTeam: state.pokemonTeam!,
+                      pokemonLocalRepository: PokemonLocalRepository(),
+                    );
                   }));
             });
           }
@@ -119,8 +122,10 @@ class _HomeScreenState extends State<HomeScreen> {
 }
 
 class _AddPokemonTeam extends StatefulWidget {
-  const _AddPokemonTeam({required this.pokemonTeam});
+  const _AddPokemonTeam(
+      {required this.pokemonTeam, required this.pokemonLocalRepository});
 
+  final PokemonLocalRepository pokemonLocalRepository;
   final List<String> pokemonTeam;
 
   @override
@@ -147,7 +152,7 @@ class _AddPokemonTeamState extends State<_AddPokemonTeam> {
         ElevatedButton(
             onPressed: () async {
               if (teamController.text.isNotEmpty) {
-                final success = await PokemonLocalRepository.saveTeam(
+                final success = await widget.pokemonLocalRepository.saveTeam(
                     PokemonTeam(
                         teamName: teamController.text,
                         pokemonNames: widget.pokemonTeam));

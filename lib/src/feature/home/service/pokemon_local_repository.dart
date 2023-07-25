@@ -1,13 +1,15 @@
 import 'dart:convert';
 
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:test_pokemon_app/src/feature/home/datasource/pokemon_local_datasource.dart';
 import 'package:test_pokemon_app/src/feature/home/domain/pokemon_team.dart'; // Import this to use JSON encoding and decoding
 
-class PokemonLocalRepository {
+class PokemonLocalRepository implements PokemonLocalDataSource{
   static const _teamsKey = 'teams_key';
 
   // Save a new team to SharedPreferences
-  static Future<bool> saveTeam(PokemonTeam team) async {
+   @override
+  Future<bool> saveTeam(PokemonTeam team) async {
     final prefs = await SharedPreferences.getInstance();
     final existingTeams = await getTeams();
     existingTeams.add(team);
@@ -15,7 +17,8 @@ class PokemonLocalRepository {
   }
 
   // Get all teams from SharedPreferences
-  static Future<List<PokemonTeam>> getTeams() async {
+   @override
+  Future<List<PokemonTeam>> getTeams() async {
     final prefs = await SharedPreferences.getInstance();
     final teamsData = prefs.getStringList(_teamsKey);
     if (teamsData == null) {

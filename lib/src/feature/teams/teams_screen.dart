@@ -3,7 +3,9 @@ import 'package:test_pokemon_app/src/feature/home/domain/pokemon_team.dart';
 import 'package:test_pokemon_app/src/feature/home/service/pokemon_local_repository.dart';
 
 class TeamScreen extends StatelessWidget {
-  const TeamScreen({super.key});
+  const TeamScreen({super.key, required this.pokemonLocalRepository});
+  
+  final PokemonLocalRepository pokemonLocalRepository;
 
   @override
   Widget build(BuildContext context) {
@@ -12,7 +14,7 @@ class TeamScreen extends StatelessWidget {
       body: SizedBox(
         height: double.infinity,
         child: FutureBuilder(
-          future: PokemonLocalRepository.getTeams(),
+          future: pokemonLocalRepository.getTeams(),
           builder: (context, AsyncSnapshot snapshot) {
             if (!snapshot.hasData) return const CircularProgressIndicator();
 
