@@ -34,6 +34,9 @@ class _HomeScreenState extends State<HomeScreen> {
           duration: const Duration(seconds: 3),
         ),
       );
+      context
+          .read<PokemonBloc>()
+          .add(PokemonChangeStatus(pokemonStatus: PokemonStatus.success));
     });
   }
 
@@ -143,12 +146,15 @@ class _AddPokemonTeamState extends State<_AddPokemonTeam> {
       actions: [
         ElevatedButton(
             onPressed: () async {
-              final success = await PokemonLocalRepository.saveTeam(PokemonTeam(
-                  teamName: teamController.text,
-                  pokemonNames: widget.pokemonTeam));
-              if (success) {
-                Navigator.pop(context);
-                context.read<PokemonBloc>().add(PokemonResetTeam());
+              if (teamController.text.isNotEmpty) {
+                final success = await PokemonLocalRepository.saveTeam(
+                    PokemonTeam(
+                        teamName: teamController.text,
+                        pokemonNames: widget.pokemonTeam));
+                if (success) {
+                  Navigator.pop(context);
+                  context.read<PokemonBloc>().add(PokemonResetTeam());
+                }
               }
             },
             child: const Text('Aceptar')),

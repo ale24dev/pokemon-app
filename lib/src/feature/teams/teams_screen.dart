@@ -80,7 +80,7 @@ class _PokemonTeamCard extends StatelessWidget {
                                 mainAxisSpacing:
                                     4.0, // Vertical spacing between items
                               ),
-                              itemCount: pokemonTeamList
+                              itemCount: pokemonTeam.pokemonNames
                                   .length, // Replace this with the actual number of items in your list
                               itemBuilder: (context, index) {
                                 // Replace this with your item widget

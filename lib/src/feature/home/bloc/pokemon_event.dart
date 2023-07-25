@@ -20,3 +20,9 @@ class AddPokemonToTeam extends PokemonEvent {
 }
 
 class PokemonResetTeam extends PokemonEvent {}
+
+class PokemonChangeStatus extends PokemonEvent {
+  final PokemonStatus pokemonStatus;
+
+  PokemonChangeStatus({required this.pokemonStatus});
+}
