@@ -15,7 +15,7 @@ class Pokemon {
   final int order;
   final List<dynamic> pastTypes;
   final Species species;
-  final Sprites sprites;
+  final Sprites? sprites;
   final List<Stat> stats;
   final List<Type> types;
   final int weight;
@@ -35,7 +35,7 @@ class Pokemon {
       required this.order,
       required this.pastTypes,
       required this.species,
-      required this.sprites,
+      this.sprites,
       required this.stats,
       required this.types,
       required this.weight});

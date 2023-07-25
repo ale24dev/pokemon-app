@@ -2,7 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:test_pokemon_app/src/feature/home/home_screen.dart';
+import 'package:test_pokemon_app/src/feature/home/views/home_screen.dart';
 import 'package:test_pokemon_app/src/feature/login/login_screen.dart';
 
 abstract class SplashController {

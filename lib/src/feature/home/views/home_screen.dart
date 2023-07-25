@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:test_pokemon_app/src/feature/home/bloc/pokemon_bloc.dart';
+import 'package:test_pokemon_app/src/feature/home/views/pokemon_details.dart';
 import 'package:test_pokemon_app/src/feature/home/widgets/pokemon_card.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -43,8 +44,21 @@ class _HomeScreenState extends State<HomeScreen> {
                     mainAxisExtent: 150,
                     crossAxisCount: 2),
                 itemBuilder: (context, index) {
-                  final pokemonPokemonResult = state.pokemonPage!.pokemonResult[index];
-                  return PokemonCard(pokemonPokemonResult: pokemonPokemonResult);
+                  final pokemonPokemonResult =
+                      state.pokemonPage!.pokemonResult[index];
+                  return GestureDetector(
+                      onTap: () {
+                        context
+                            .read<PokemonBloc>()
+                            .add(PokemonSelected(pokemonPokemonResult.url));
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: ((context) =>
+                                    const PokemonDetails())));
+                      },
+                      child: PokemonCard(
+                          pokemonPokemonResult: pokemonPokemonResult));
                 },
               )
           };
@@ -57,4 +71,3 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 }
-

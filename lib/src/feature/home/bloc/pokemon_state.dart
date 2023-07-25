@@ -6,8 +6,10 @@ enum PokemonStatus { initial, loading, success, error }
 class PokemonState {
   final PokemonStatus pokemonStatus;
   final PokemonPage? pokemonPage;
+  final Pokemon? pokemonSelected;
 
-  const PokemonState({required this.pokemonStatus, this.pokemonPage});
+  const PokemonState(
+      {required this.pokemonStatus, this.pokemonPage, this.pokemonSelected});
 
   factory PokemonState.initial() =>
       const PokemonState(pokemonStatus: PokemonStatus.initial);
@@ -15,10 +17,12 @@ class PokemonState {
   PokemonState copyWith({
     PokemonStatus? pokemonStatus,
     PokemonPage? pokemonPage,
+    Pokemon? pokemonSelected,
   }) {
     return PokemonState(
       pokemonStatus: pokemonStatus ?? this.pokemonStatus,
       pokemonPage: pokemonPage ?? this.pokemonPage,
+      pokemonSelected: pokemonSelected ?? this.pokemonSelected,
     );
   }
 }
