@@ -18,7 +18,7 @@ String pokemonModelToJson(PokemonModel data) => json.encode(data.toJson());
 class PokemonModel implements Pokemon {
   @override
   @JsonKey(name: "abilities")
-  final List<Ability> abilities;
+  List<Ability> abilities;
   @override
   @JsonKey(name: "base_experience")
   int baseExperience;
@@ -101,16 +101,16 @@ class PokemonModel implements Pokemon {
 @JsonSerializable()
 class Ability {
   @JsonKey(name: "ability")
-  Species ability;
+  Species? ability;
   @JsonKey(name: "is_hidden")
-  bool isHidden;
+  bool? isHidden;
   @JsonKey(name: "slot")
-  int slot;
+  int? slot;
 
   Ability({
-    required this.ability,
-    required this.isHidden,
-    required this.slot,
+    this.ability,
+    this.isHidden,
+    this.slot,
   });
 
   factory Ability.fromJson(Map<String, dynamic> json) =>
@@ -122,13 +122,13 @@ class Ability {
 @JsonSerializable()
 class Species {
   @JsonKey(name: "name")
-  String name;
+  String? name;
   @JsonKey(name: "url")
-  String url;
+  String? url;
 
   Species({
-    required this.name,
-    required this.url,
+    this.name,
+    this.url,
   });
 
   factory Species.fromJson(Map<String, dynamic> json) =>
@@ -140,13 +140,13 @@ class Species {
 @JsonSerializable()
 class GameIndex {
   @JsonKey(name: "game_index")
-  int gameIndex;
+  int? gameIndex;
   @JsonKey(name: "version")
-  Species version;
+  Species? version;
 
   GameIndex({
-    required this.gameIndex,
-    required this.version,
+    this.gameIndex,
+    this.version,
   });
 
   factory GameIndex.fromJson(Map<String, dynamic> json) =>
@@ -158,13 +158,13 @@ class GameIndex {
 @JsonSerializable()
 class HeldItem {
   @JsonKey(name: "item")
-  Species item;
+  Species? item;
   @JsonKey(name: "version_details")
-  List<VersionDetail> versionDetails;
+  List<VersionDetail>? versionDetails;
 
   HeldItem({
-    required this.item,
-    required this.versionDetails,
+    this.item,
+    this.versionDetails,
   });
 
   factory HeldItem.fromJson(Map<String, dynamic> json) =>
@@ -176,13 +176,13 @@ class HeldItem {
 @JsonSerializable()
 class VersionDetail {
   @JsonKey(name: "rarity")
-  int rarity;
+  int? rarity;
   @JsonKey(name: "version")
-  Species version;
+  Species? version;
 
   VersionDetail({
-    required this.rarity,
-    required this.version,
+    this.rarity,
+    this.version,
   });
 
   factory VersionDetail.fromJson(Map<String, dynamic> json) =>
@@ -194,13 +194,13 @@ class VersionDetail {
 @JsonSerializable()
 class Move {
   @JsonKey(name: "move")
-  Species move;
+  Species? move;
   @JsonKey(name: "version_group_details")
-  List<VersionGroupDetail> versionGroupDetails;
+  List<VersionGroupDetail>? versionGroupDetails;
 
   Move({
-    required this.move,
-    required this.versionGroupDetails,
+    this.move,
+    this.versionGroupDetails,
   });
 
   factory Move.fromJson(Map<String, dynamic> json) => _$MoveFromJson(json);
@@ -211,16 +211,16 @@ class Move {
 @JsonSerializable()
 class VersionGroupDetail {
   @JsonKey(name: "level_learned_at")
-  int levelLearnedAt;
+  int? levelLearnedAt;
   @JsonKey(name: "move_learn_method")
-  Species moveLearnMethod;
+  Species? moveLearnMethod;
   @JsonKey(name: "version_group")
-  Species versionGroup;
+  Species? versionGroup;
 
   VersionGroupDetail({
-    required this.levelLearnedAt,
-    required this.moveLearnMethod,
-    required this.versionGroup,
+    this.levelLearnedAt,
+    this.moveLearnMethod,
+    this.versionGroup,
   });
 
   factory VersionGroupDetail.fromJson(Map<String, dynamic> json) =>
@@ -232,10 +232,10 @@ class VersionGroupDetail {
 @JsonSerializable()
 class GenerationV {
   @JsonKey(name: "black-white")
-  Sprites blackWhite;
+  Sprites? blackWhite;
 
   GenerationV({
-    required this.blackWhite,
+    this.blackWhite,
   });
 
   factory GenerationV.fromJson(Map<String, dynamic> json) =>
@@ -247,16 +247,16 @@ class GenerationV {
 @JsonSerializable()
 class GenerationIv {
   @JsonKey(name: "diamond-pearl")
-  Sprites diamondPearl;
+  Sprites? diamondPearl;
   @JsonKey(name: "heartgold-soulsilver")
-  Sprites heartgoldSoulsilver;
+  Sprites? heartgoldSoulsilver;
   @JsonKey(name: "platinum")
-  Sprites platinum;
+  Sprites? platinum;
 
   GenerationIv({
-    required this.diamondPearl,
-    required this.heartgoldSoulsilver,
-    required this.platinum,
+    this.diamondPearl,
+    this.heartgoldSoulsilver,
+    this.platinum,
   });
 
   factory GenerationIv.fromJson(Map<String, dynamic> json) =>
@@ -268,31 +268,31 @@ class GenerationIv {
 @JsonSerializable()
 class Versions {
   @JsonKey(name: "generation-i")
-  GenerationI generationI;
+  GenerationI? generationI;
   @JsonKey(name: "generation-ii")
-  GenerationIi generationIi;
+  GenerationIi? generationIi;
   @JsonKey(name: "generation-iii")
-  GenerationIii generationIii;
+  GenerationIii? generationIii;
   @JsonKey(name: "generation-iv")
-  GenerationIv generationIv;
+  GenerationIv? generationIv;
   @JsonKey(name: "generation-v")
-  GenerationV generationV;
+  GenerationV? generationV;
   @JsonKey(name: "generation-vi")
-  Map<String, Home> generationVi;
+  Map<String, Home>? generationVi;
   @JsonKey(name: "generation-vii")
-  GenerationVii generationVii;
+  GenerationVii? generationVii;
   @JsonKey(name: "generation-viii")
-  GenerationViii generationViii;
+  GenerationViii? generationViii;
 
   Versions({
-    required this.generationI,
-    required this.generationIi,
-    required this.generationIii,
-    required this.generationIv,
-    required this.generationV,
-    required this.generationVi,
-    required this.generationVii,
-    required this.generationViii,
+    this.generationI,
+    this.generationIi,
+    this.generationIii,
+    this.generationIv,
+    this.generationV,
+    this.generationVi,
+    this.generationVii,
+    this.generationViii,
   });
 
   factory Versions.fromJson(Map<String, dynamic> json) =>
@@ -304,19 +304,19 @@ class Versions {
 @JsonSerializable()
 class Sprites {
   @JsonKey(name: "back_default")
-  String backDefault;
+  String? backDefault;
   @JsonKey(name: "back_female")
   dynamic backFemale;
   @JsonKey(name: "back_shiny")
-  String backShiny;
+  String? backShiny;
   @JsonKey(name: "back_shiny_female")
   dynamic backShinyFemale;
   @JsonKey(name: "front_default")
-  String frontDefault;
+  String? frontDefault;
   @JsonKey(name: "front_female")
   dynamic frontFemale;
   @JsonKey(name: "front_shiny")
-  String frontShiny;
+  String? frontShiny;
   @JsonKey(name: "front_shiny_female")
   dynamic frontShinyFemale;
   @JsonKey(name: "other")
@@ -327,13 +327,13 @@ class Sprites {
   Sprites? animated;
 
   Sprites({
-    required this.backDefault,
+    this.backDefault,
     this.backFemale,
-    required this.backShiny,
+    this.backShiny,
     this.backShinyFemale,
-    required this.frontDefault,
+    this.frontDefault,
     this.frontFemale,
-    required this.frontShiny,
+    this.frontShiny,
     this.frontShinyFemale,
     this.other,
     this.versions,
@@ -349,13 +349,13 @@ class Sprites {
 @JsonSerializable()
 class GenerationI {
   @JsonKey(name: "red-blue")
-  RedBlue redBlue;
+  RedBlue? redBlue;
   @JsonKey(name: "yellow")
-  RedBlue yellow;
+  RedBlue? yellow;
 
   GenerationI({
-    required this.redBlue,
-    required this.yellow,
+    this.redBlue,
+    this.yellow,
   });
 
   factory GenerationI.fromJson(Map<String, dynamic> json) =>
@@ -367,25 +367,25 @@ class GenerationI {
 @JsonSerializable()
 class RedBlue {
   @JsonKey(name: "back_default")
-  String backDefault;
+  String? backDefault;
   @JsonKey(name: "back_gray")
-  String backGray;
+  String? backGray;
   @JsonKey(name: "back_transparent")
-  String backTransparent;
+  String? backTransparent;
   @JsonKey(name: "front_default")
-  String frontDefault;
+  String? frontDefault;
   @JsonKey(name: "front_gray")
-  String frontGray;
+  String? frontGray;
   @JsonKey(name: "front_transparent")
-  String frontTransparent;
+  String? frontTransparent;
 
   RedBlue({
-    required this.backDefault,
-    required this.backGray,
-    required this.backTransparent,
-    required this.frontDefault,
-    required this.frontGray,
-    required this.frontTransparent,
+    this.backDefault,
+    this.backGray,
+    this.backTransparent,
+    this.frontDefault,
+    this.frontGray,
+    this.frontTransparent,
   });
 
   factory RedBlue.fromJson(Map<String, dynamic> json) =>
@@ -397,16 +397,16 @@ class RedBlue {
 @JsonSerializable()
 class GenerationIi {
   @JsonKey(name: "crystal")
-  Crystal crystal;
+  Crystal? crystal;
   @JsonKey(name: "gold")
-  Gold gold;
+  Gold? gold;
   @JsonKey(name: "silver")
-  Gold silver;
+  Gold? silver;
 
   GenerationIi({
-    required this.crystal,
-    required this.gold,
-    required this.silver,
+    this.crystal,
+    this.gold,
+    this.silver,
   });
 
   factory GenerationIi.fromJson(Map<String, dynamic> json) =>
@@ -418,31 +418,31 @@ class GenerationIi {
 @JsonSerializable()
 class Crystal {
   @JsonKey(name: "back_default")
-  String backDefault;
+  String? backDefault;
   @JsonKey(name: "back_shiny")
-  String backShiny;
+  String? backShiny;
   @JsonKey(name: "back_shiny_transparent")
-  String backShinyTransparent;
+  String? backShinyTransparent;
   @JsonKey(name: "back_transparent")
-  String backTransparent;
+  String? backTransparent;
   @JsonKey(name: "front_default")
-  String frontDefault;
+  String? frontDefault;
   @JsonKey(name: "front_shiny")
-  String frontShiny;
+  String? frontShiny;
   @JsonKey(name: "front_shiny_transparent")
-  String frontShinyTransparent;
+  String? frontShinyTransparent;
   @JsonKey(name: "front_transparent")
-  String frontTransparent;
+  String? frontTransparent;
 
   Crystal({
-    required this.backDefault,
-    required this.backShiny,
-    required this.backShinyTransparent,
-    required this.backTransparent,
-    required this.frontDefault,
-    required this.frontShiny,
-    required this.frontShinyTransparent,
-    required this.frontTransparent,
+    this.backDefault,
+    this.backShiny,
+    this.backShinyTransparent,
+    this.backTransparent,
+    this.frontDefault,
+    this.frontShiny,
+    this.frontShinyTransparent,
+    this.frontTransparent,
   });
 
   factory Crystal.fromJson(Map<String, dynamic> json) =>
@@ -454,21 +454,21 @@ class Crystal {
 @JsonSerializable()
 class Gold {
   @JsonKey(name: "back_default")
-  String backDefault;
+  String? backDefault;
   @JsonKey(name: "back_shiny")
-  String backShiny;
+  String? backShiny;
   @JsonKey(name: "front_default")
-  String frontDefault;
+  String? frontDefault;
   @JsonKey(name: "front_shiny")
-  String frontShiny;
+  String? frontShiny;
   @JsonKey(name: "front_transparent")
   String? frontTransparent;
 
   Gold({
-    required this.backDefault,
-    required this.backShiny,
-    required this.frontDefault,
-    required this.frontShiny,
+    this.backDefault,
+    this.backShiny,
+    this.frontDefault,
+    this.frontShiny,
     this.frontTransparent,
   });
 
@@ -480,16 +480,16 @@ class Gold {
 @JsonSerializable()
 class GenerationIii {
   @JsonKey(name: "emerald")
-  OfficialArtwork emerald;
+  OfficialArtwork? emerald;
   @JsonKey(name: "firered-leafgreen")
-  Gold fireredLeafgreen;
+  Gold? fireredLeafgreen;
   @JsonKey(name: "ruby-sapphire")
-  Gold rubySapphire;
+  Gold? rubySapphire;
 
   GenerationIii({
-    required this.emerald,
-    required this.fireredLeafgreen,
-    required this.rubySapphire,
+    this.emerald,
+    this.fireredLeafgreen,
+    this.rubySapphire,
   });
 
   factory GenerationIii.fromJson(Map<String, dynamic> json) =>
@@ -501,13 +501,13 @@ class GenerationIii {
 @JsonSerializable()
 class OfficialArtwork {
   @JsonKey(name: "front_default")
-  String frontDefault;
+  String? frontDefault;
   @JsonKey(name: "front_shiny")
-  String frontShiny;
+  String? frontShiny;
 
   OfficialArtwork({
-    required this.frontDefault,
-    required this.frontShiny,
+    this.frontDefault,
+    this.frontShiny,
   });
 
   factory OfficialArtwork.fromJson(Map<String, dynamic> json) =>
@@ -519,18 +519,18 @@ class OfficialArtwork {
 @JsonSerializable()
 class Home {
   @JsonKey(name: "front_default")
-  String frontDefault;
+  String? frontDefault;
   @JsonKey(name: "front_female")
   dynamic frontFemale;
   @JsonKey(name: "front_shiny")
-  String frontShiny;
+  String? frontShiny;
   @JsonKey(name: "front_shiny_female")
   dynamic frontShinyFemale;
 
   Home({
-    required this.frontDefault,
+    this.frontDefault,
     this.frontFemale,
-    required this.frontShiny,
+    this.frontShiny,
     this.frontShinyFemale,
   });
 
@@ -542,13 +542,13 @@ class Home {
 @JsonSerializable()
 class GenerationVii {
   @JsonKey(name: "icons")
-  DreamWorld icons;
+  DreamWorld? icons;
   @JsonKey(name: "ultra-sun-ultra-moon")
-  Home ultraSunUltraMoon;
+  Home? ultraSunUltraMoon;
 
   GenerationVii({
-    required this.icons,
-    required this.ultraSunUltraMoon,
+    this.icons,
+    this.ultraSunUltraMoon,
   });
 
   factory GenerationVii.fromJson(Map<String, dynamic> json) =>
@@ -560,12 +560,12 @@ class GenerationVii {
 @JsonSerializable()
 class DreamWorld {
   @JsonKey(name: "front_default")
-  String frontDefault;
+  String? frontDefault;
   @JsonKey(name: "front_female")
   dynamic frontFemale;
 
   DreamWorld({
-    required this.frontDefault,
+    this.frontDefault,
     this.frontFemale,
   });
 
@@ -578,10 +578,10 @@ class DreamWorld {
 @JsonSerializable()
 class GenerationViii {
   @JsonKey(name: "icons")
-  DreamWorld icons;
+  DreamWorld? icons;
 
   GenerationViii({
-    required this.icons,
+    this.icons,
   });
 
   factory GenerationViii.fromJson(Map<String, dynamic> json) =>
@@ -593,16 +593,16 @@ class GenerationViii {
 @JsonSerializable()
 class Other {
   @JsonKey(name: "dream_world")
-  DreamWorld dreamWorld;
+  DreamWorld? dreamWorld;
   @JsonKey(name: "home")
-  Home home;
+  Home? home;
   @JsonKey(name: "official-artwork")
-  OfficialArtwork officialArtwork;
+  OfficialArtwork? officialArtwork;
 
   Other({
-    required this.dreamWorld,
-    required this.home,
-    required this.officialArtwork,
+    this.dreamWorld,
+    this.home,
+    this.officialArtwork,
   });
 
   factory Other.fromJson(Map<String, dynamic> json) => _$OtherFromJson(json);
@@ -613,16 +613,16 @@ class Other {
 @JsonSerializable()
 class Stat {
   @JsonKey(name: "base_stat")
-  int baseStat;
+  int? baseStat;
   @JsonKey(name: "effort")
-  int effort;
+  int? effort;
   @JsonKey(name: "stat")
-  Species stat;
+  Species? stat;
 
   Stat({
-    required this.baseStat,
-    required this.effort,
-    required this.stat,
+    this.baseStat,
+    this.effort,
+    this.stat,
   });
 
   factory Stat.fromJson(Map<String, dynamic> json) => _$StatFromJson(json);
@@ -633,13 +633,13 @@ class Stat {
 @JsonSerializable()
 class Type {
   @JsonKey(name: "slot")
-  int slot;
+  int? slot;
   @JsonKey(name: "type")
-  Species type;
+  Species? type;
 
   Type({
-    required this.slot,
-    required this.type,
+    this.slot,
+    this.type,
   });
 
   factory Type.fromJson(Map<String, dynamic> json) => _$TypeFromJson(json);

@@ -3,7 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:test_pokemon_app/src/core/widgets/generic_text_field.dart';
-import 'package:test_pokemon_app/src/feature/home/home_screen.dart';
+import 'package:test_pokemon_app/src/feature/home/views/home_screen.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
