@@ -28,7 +28,7 @@ class PokemonDetails extends StatelessWidget {
                 child: Text('Unexpected error'),
               ),
             ),
-          PokemonStatus.success => PokemonDetailsWidget(
+          PokemonStatus.success ||  PokemonStatus.teamCreated => PokemonDetailsWidget(
               pokemon: state.pokemonSelected!,
             )
         };
