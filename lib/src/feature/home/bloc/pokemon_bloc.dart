@@ -35,7 +35,12 @@ class PokemonBloc extends Bloc<PokemonEvent, PokemonState> {
     });
 
     on<PokemonTeamEnable>((event, emit) async {
-      emit(state.copyWith(selecteableTeam: true));
+      if (state.selecteableTeam) {
+        add(PokemonResetTeam());
+        emit(state.copyWith(selecteableTeam: false));
+      } else {
+        emit(state.copyWith(selecteableTeam: true));
+      }
     });
 
     on<AddPokemonToTeam>((event, emit) async {
@@ -64,7 +69,7 @@ class PokemonBloc extends Bloc<PokemonEvent, PokemonState> {
       emit(state.copyWith(
           pokemonTeam: [],
           pokemonSelected: null,
-          pokemonStatus: PokemonStatus.teamCreated));
+          pokemonStatus: event.addedTeam ? PokemonStatus.teamCreated : null));
     });
 
     on<PokemonChangeStatus>((event, emit) async {

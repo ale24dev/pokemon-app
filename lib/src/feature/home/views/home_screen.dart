@@ -153,7 +153,9 @@ class _AddPokemonTeamState extends State<_AddPokemonTeam> {
                         pokemonNames: widget.pokemonTeam));
                 if (success) {
                   Navigator.pop(context);
-                  context.read<PokemonBloc>().add(PokemonResetTeam());
+                  context
+                      .read<PokemonBloc>()
+                      .add(PokemonResetTeam(addedTeam: true));
                 }
               }
             },
