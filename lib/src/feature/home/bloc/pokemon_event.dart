@@ -18,3 +18,5 @@ class AddPokemonToTeam extends PokemonEvent {
 
   AddPokemonToTeam({required this.name});
 }
+
+class PokemonResetTeam extends PokemonEvent {}

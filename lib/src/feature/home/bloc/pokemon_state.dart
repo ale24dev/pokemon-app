@@ -1,6 +1,6 @@
 part of 'pokemon_bloc.dart';
 
-enum PokemonStatus { initial, loading, success, error }
+enum PokemonStatus { initial, loading, success, teamCreated, error }
 
 @immutable
 class PokemonState {

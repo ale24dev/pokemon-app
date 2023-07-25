@@ -59,5 +59,12 @@ class PokemonBloc extends Bloc<PokemonEvent, PokemonState> {
         }
       }
     });
+
+    on<PokemonResetTeam>((event, emit) async {
+      emit(state.copyWith(
+          pokemonTeam: [],
+          pokemonSelected: null,
+          pokemonStatus: PokemonStatus.teamCreated));
+    });
   }
 }
