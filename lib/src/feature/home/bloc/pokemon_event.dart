@@ -10,3 +10,11 @@ class PokemonSelected extends PokemonEvent {
 
   PokemonSelected(this.url);
 }
+
+class PokemonTeamEnable extends PokemonEvent {}
+
+class AddPokemonToTeam extends PokemonEvent {
+  final String name;
+
+  AddPokemonToTeam({required this.name});
+}

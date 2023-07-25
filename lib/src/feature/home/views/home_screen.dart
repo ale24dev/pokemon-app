@@ -28,6 +28,27 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
       body: BlocBuilder<PokemonBloc, PokemonState>(
         builder: (context, state) {
+          if (context.read<PokemonBloc>().state.pokemonTeam?.length == 6) {
+            WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+              showDialog(
+                  context: context,
+                  builder: ((context) {
+                    return AlertDialog(
+                      title: const Text(
+                          'Deseas formar un equipo con los pokemones seleccionados'),
+                      actions: [
+                        ElevatedButton(
+                            onPressed: () {}, child: const Text('Aceptar')),
+                        ElevatedButton(
+                            onPressed: () {
+                              Navigator.pop(context);
+                            },
+                            child: const Text('Cancelar')),
+                      ],
+                    );
+                  }));
+            });
+          }
           final content = switch (state.pokemonStatus) {
             PokemonStatus.initial => const Center(
                 child: CircularProgressIndicator(),
@@ -48,14 +69,19 @@ class _HomeScreenState extends State<HomeScreen> {
                       state.pokemonPage!.pokemonResult[index];
                   return GestureDetector(
                       onTap: () {
-                        context
-                            .read<PokemonBloc>()
-                            .add(PokemonSelected(pokemonPokemonResult.url));
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: ((context) =>
-                                    const PokemonDetails())));
+                        if (state.selecteableTeam) {
+                          context.read<PokemonBloc>().add(AddPokemonToTeam(
+                              name: pokemonPokemonResult.name));
+                        } else {
+                          context
+                              .read<PokemonBloc>()
+                              .add(PokemonSelected(pokemonPokemonResult.url));
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: ((context) =>
+                                      const PokemonDetails())));
+                        }
                       },
                       child: PokemonCard(
                           pokemonPokemonResult: pokemonPokemonResult));
@@ -67,6 +93,12 @@ class _HomeScreenState extends State<HomeScreen> {
             child: content,
           );
         },
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          context.read<PokemonBloc>().add(PokemonTeamEnable());
+        },
+        child: const Icon(Icons.swap_horizontal_circle_outlined),
       ),
     );
   }
