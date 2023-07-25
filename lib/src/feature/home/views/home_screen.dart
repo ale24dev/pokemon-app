@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:test_pokemon_app/src/core/widgets/drawer.dart';
 import 'package:test_pokemon_app/src/core/widgets/generic_text_field.dart';
 import 'package:test_pokemon_app/src/feature/home/bloc/pokemon_bloc.dart';
 import 'package:test_pokemon_app/src/feature/home/domain/pokemon_team.dart';
@@ -40,9 +41,9 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: const Icon(Icons.menu),
         title: const Text('Pokedex'),
       ),
+      drawer: const DrawerScreen(),
       body: BlocBuilder<PokemonBloc, PokemonState>(
         builder: (context, state) {
           if (PokemonStatus.teamCreated == state.pokemonStatus) {
